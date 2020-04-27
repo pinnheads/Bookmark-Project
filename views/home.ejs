@@ -1,0 +1,37 @@
+<%- include("partials/header.ejs") %>
+
+  <div class="container home-list">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            Sample List
+          </div>
+          <ul class="list-group">
+            <% links.forEach(link => { %>
+              <li class="list-group-item">
+                <div class="input-group-prepend my-auto link-icon">
+                    <div class="input-group-text"><img src="<%= link.linkIcon %>" alt="" class = "link-img"></div>
+                    <div class="link-text align-middle">
+                      <p><a href=<%= link.href %>> <%= link.name %>  </a></p>
+                    </div>
+                </div>
+              </li>
+            <% }) %>
+            <li class="list-group-item">
+              <form action="/" method="post">
+                <div class="input-group mb-3">
+                      <input type="url" name="url" placeholder="New Item" autocomplete="off" class="form-control" required>
+                      <div class="input-group-append">
+                      <button type="submit" name="listName" value="list name will go here" class="btn btn-danger">Add</button>
+                    </div>
+                </div>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%- include("partials/footer.ejs") %> 

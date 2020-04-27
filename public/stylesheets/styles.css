@@ -1,0 +1,77 @@
+html{
+  text-align: center;
+}
+
+body{
+ background: rgb(0, 128, 128);
+ background: -moz-linear-gradient(0deg, rgba(0, 128, 128, 1) 9%, rgba(228, 233, 253, 1) 71%);
+ background: -webkit-linear-gradient(0deg, rgba(0, 128, 128, 1) 9%, rgba(228, 233, 253, 1) 71%);
+ background: linear-gradient(0deg, rgba(0, 128, 128, 1) 9%, rgba(228, 233, 253, 1) 71%);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.brand-logo{
+  width: 200px;
+}
+/* List Css */
+.card{
+  margin: 20px 0;
+}
+
+.card-header{
+  background-color: #3f4242;
+  font-family: 'Manrope',
+  sans-serif;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+}
+a{
+  text-decoration: none;
+}
+.link-img{
+  height: 25px;
+  width: 25px;
+}
+.link-icon{
+  width: 100%;
+  float: left;
+}
+
+.link-text{
+  width: 90%;
+  font-family: 'Manrope',
+  sans-serif;
+  float: left;
+  margin-left: 10px;
+  height: 100%;
+}
+.link-text p{
+  margin: 0;
+  margin-top: 2px;
+}
+.delete-icon{
+  margin-top: 0;
+}
+.input-group-text{
+  background-color: #fff;
+}
+
+.link-image{
+  float: left;
+  width: 25px;
+}
+
+.list-group-item{
+  padding: 16px auto;
+}
+/*  */
+.home-list{
+  margin: 80px auto;
+}

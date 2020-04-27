@@ -1,0 +1,33 @@
+{
+  "name": "bookmark-project",
+  "version": "1.0.0",
+  "description": "A simple bookmark project to keep all the bookmarks in one place.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pinnheads/Bookmark-Project.git"
+  },
+  "author": "Utsav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pinnheads/Bookmark-Project/issues"
+  },
+  "homepage": "https://github.com/pinnheads/Bookmark-Project#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "got": "^11.0.2",
+    "metascraper": "^5.11.9",
+    "metascraper-image": "^5.11.9",
+    "metascraper-logo": "^5.11.9",
+    "metascraper-logo-favicon": "^5.11.9",
+    "metascraper-title": "^5.11.9",
+    "metascraper-url": "^5.11.9",
+    "mongoose": "^5.9.10",
+    "page-metadata-parser": "^1.1.4"
+  }
+}
