@@ -2,18 +2,27 @@
 
   <div class="container home-list">
     <div class="row">
+      <% lists.forEach(list => { %>
       <div class="col-lg-6">
         <div class="card">
           <div class="card-header">
-            Sample List
+            <form action="/deleteList" method="post">
+              <button type="submit" name="listID" value = "<%= list._id %>" class="btn btn-danger delete-list-button" ><i class="fas fa-trash-alt"></i></button>
+            </form>
+            <form action="/list" method="post">
+              <%= list.name %>
+              <button type="submit" name="listID" value = "<%= list._id %>" class="btn btn-outline-light list-view-button" ><i class="fas fa-angle-right"></i></button>
+            </form>
           </div>
           <ul class="list-group">
-            <% links.forEach(link => { %>
+            <% list.links.forEach(link => { %>
               <li class="list-group-item">
                 <div class="input-group-prepend my-auto link-icon">
-                    <div class="input-group-text"><img src="<%= link.linkIcon %>" alt="" class = "link-img"></div>
+                    <div class="input-group-text">
+                      <img src="<%= link.linkIcon %>" alt="&#127877;" class = "link-img">
+                    </div>
                     <div class="link-text align-middle">
-                      <p><a href=<%= link.href %>> <%= link.name %>  </a></p>
+                      <p><a href=<%= link.href %>> <%= link.name %> </a></p>
                     </div>
                 </div>
               </li>
@@ -21,15 +30,27 @@
             <li class="list-group-item">
               <form action="/" method="post">
                 <div class="input-group mb-3">
-                      <input type="url" name="url" placeholder="New Item" autocomplete="off" class="form-control" required>
-                      <div class="input-group-append">
-                      <button type="submit" name="listName" value="list name will go here" class="btn btn-danger">Add</button>
-                    </div>
+                  <input type="url" name="url" placeholder="New Item" autocomplete="off" class="form-control" required>
+                  <div class="input-group-append">
+                    <button type="submit" name="listID" value=<%= list._id %>  class="btn btn-primary"><i class="fas fa-plus"></i></button>
+                  </div>
                 </div>
               </form>
             </li>
           </ul>
         </div>
+      </div>
+      <% }) %>
+      <!-- New list area -->
+      <div class="col=lg-6 mx-auto my-auto">
+        <form action="/newList" method="post">
+          <div class="input-group new-list">
+            <input type="text" name="newListName" class="form-control" id="new-list-name" placeholder="Add a new list here" required>
+            <div class="input-group-append">
+              <button type="submit" name="listName" value="list name will go here" class="btn btn-success"><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>

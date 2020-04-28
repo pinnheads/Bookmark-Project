@@ -1,0 +1,37 @@
+<%- include("partials/header.ejs") %>
+
+  <div class="container home-list">
+    <h1><%= foundListTitle %> Links</h1>
+    <table class="table table-light table-bordered table-hover table-striped">
+      <thead class="thead-dark">
+        <tr align="center">
+          <th scope="col">Icon</th>
+          <th scope="col">Title</th>
+          <th scope="col">Url</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody align="center">
+        <% links.forEach(link => { %>
+          <tr>
+            <th scope="row">
+              <div class="input-group-text">
+                <img src="<%= link.linkIcon %>" alt="&#127877;" class = "link-img">
+              </div>
+            </th>
+            <td><%= link.name %></td>
+            <td><a href=<%= link.href %>><%= link.href %></a></td>
+            <td>
+              <form action="/delete" method="post">
+                <input type="hidden" name="listID" value=<%= listID %>>
+                <button type="submit" name="linkID" value="<%= link._id %>" class ="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+              </form>
+              <!-- <button type="submit"class = "btn btn-warning"><i class="fas fa-edit"></i></button> -->
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+<%- include("partials/footer.ejs") %> 
