@@ -12,7 +12,7 @@ const ejs = require('ejs'),
 
 const app = express();
 
-mongoose.connect("mongodb+srv://admin-utsav:todolist@cluster0-bxkcc.mongodb.net/bookmarkDB", {useNewUrlParser: true,useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect("mongodb://localhost:27017/bookmarkDB", {useNewUrlParser: true,useUnifiedTopology: true, useFindAndModify: false});
 
 app.set('view engine', 'ejs');
 
