@@ -12,14 +12,14 @@ const ejs = require('ejs'),
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/bookmarkDB', {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.set('useFindAndModify', false);
+mongoose.connect("mongodb+srv://admin-utsav:todolist@cluster0-bxkcc.mongodb.net/bookmarkDB", {useNewUrlParser: true,useUnifiedTopology: true, useFindAndModify: false});
 
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 
+// Schemas
 const linkSchema = {
   href: String,
   name: String,
@@ -31,6 +31,7 @@ const linkListSchema = {
   links: [linkSchema]
 }
 
+// Models
 const Link = mongoose.model("Link", linkSchema);
 const List = mongoose.model("List", linkListSchema);
 
@@ -47,6 +48,10 @@ app.get("/",function(req, res){
 
 });
 
+app.get("/contact", function(req, res){
+  res.render("contactPage");
+});
+
 // Home POST Route
 app.post("/", async function(req, res){
   const url = req.body.url;
@@ -56,61 +61,73 @@ app.post("/", async function(req, res){
 
   // Get title, favicon link and url
   const targetUrl = url;(async () => {
-  const { body: html, url } = await got(targetUrl)
-  const metadata = await metascraper({ html, url })
-  if(metadata.logo === null){
-    const newItem = new Link({
-      href: metadata.url,
-      name: metadata.title,
-      linkIcon: "images/error.svg"
-    });
-    // Search for the list & Save the new Item in the list
-    List.findOne({_id: listID}, function(err, foundList){
-      if(err){
-        console.log(err);
-      } else {
-        foundList.links.push(newItem);
-        foundList.save();
-        console.log("Saved and Updated!!");
-        res.redirect("/");
-      }
-    });
-  // Save the new item in DB
-  } else {
-    const newItem = new Link({
-          href: metadata.url,
-          name: metadata.title,
-          linkIcon: metadata.logo
-    });
-    // Search for the list & Save the new Item in the list
-    List.findOne({_id: listID}, function(err, foundList){
-      if(err){
-        console.log(err);
-      } else {
-        foundList.links.push(newItem);
-        foundList.save();
-        console.log("Saved and Updated!!");
-        res.redirect("/");
-      }
-    });
-  }
+
+    const { body: html, url } = await got(targetUrl);
+    const metadata = await metascraper({ html, url });
+
+    if( metadata.logo === null ){
+
+      const newItem = new Link({
+        href: metadata.url,
+        name: metadata.title,
+        linkIcon: "images/error.svg"
+      });
+
+      // Search for the list & Save the new Item in the list
+      List.findOne({_id: listID}, function(err, foundList){
+
+        if(err){
+          console.log(err);
+        } else {
+          foundList.links.push(newItem);
+          foundList.save();
+          console.log("Saved and Updated!!");
+          res.redirect("/");
+        }
+
+      });
+    // Save the new item in DB
+    } else {
+      const newItem = new Link({
+            href: metadata.url,
+            name: metadata.title,
+            linkIcon: metadata.logo
+      });
+      // Search for the list & Save the new Item in the list
+      List.findOne({_id: listID}, function(err, foundList){
+        if(err){
+          console.log(err);
+        } else {
+          foundList.links.push(newItem);
+          foundList.save();
+          console.log("Saved and Updated!!");
+          res.redirect("/");
+        }
+      });
+    }
 })()
 });
 
 // Route to save a new List
 app.post("/newList", function(req,res){
-  // console.log(req.body);
+
   const newListName = req.body.newListName;
+
   const newList = new List({
     name: newListName,
     links: []
-  })
+  });
+
   newList.save();
+
   res.redirect("/");
 });
 
+// Route to a single View List
 app.get("/list/:listName", function(req, res){
+
   const requestedList = req.params.listName;
+
   List.findOne({_id: requestedList}, function(err, foundList){
     if(err){
       console.log(err);
@@ -118,24 +135,32 @@ app.get("/list/:listName", function(req, res){
       res.render("listView", {listID: requestedList, foundListTitle: foundList.name, links: foundList.links});
     }
   });
+
 });
 
+// Route to get listID
 app.post("/list", function(req, res){
   const listID = req.body.listID;
   res.redirect("/list/"+listID);
 });
 
+// Delete Route for single elements
 app.post("/delete", function(req, res){
+
   const linkID = req.body.linkID;
   const listID = req.body.listID;
+
   List.findOneAndUpdate({_id: listID}, {"$pull": {"links": {"_id": linkID}}},function(err, foundList){
     if(!err){
       res.redirect("/list/"+listID);
     }
   });
+
 });
 
+// Delete Route for a list
 app.post("/deleteList", function(req, res){
+
   List.findByIdAndDelete(req.body.listID, function(err){
     if(err) {
       console.log(err);
@@ -144,8 +169,9 @@ app.post("/deleteList", function(req, res){
       res.redirect("/");
     }
   });
+
 });
 
 app.listen(process.env.PORT || 3000, function(){
-  console.log("Server active and listening on port 3000....");
+  console.log("Server active on port 3000....");
 })

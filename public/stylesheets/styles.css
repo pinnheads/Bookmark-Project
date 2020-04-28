@@ -1,16 +1,27 @@
 html{
   text-align: center;
+  height:100%;
 }
 
 body{
- background: rgb(0, 128, 128);
- background: -moz-linear-gradient(0deg, rgba(0, 128, 128, 1) 9%, rgba(228, 233, 253, 1) 71%);
- background: -webkit-linear-gradient(0deg, rgba(0, 128, 128, 1) 9%, rgba(228, 233, 253, 1) 71%);
- background: linear-gradient(0deg, rgba(0, 128, 128, 1) 9%, rgba(228, 233, 253, 1) 71%);
+  background: rgb(0, 128, 128);
+  background: -moz-linear-gradient(0deg, rgba(0, 128, 128, 1) 9%, rgba(228, 233, 253, 1) 71%);
+  background: -webkit-linear-gradient(0deg, rgba(0, 128, 128, 1) 9%, rgba(228, 233, 253, 1) 71%);
+  background: linear-gradient(0deg, rgba(0, 128, 128, 1) 9%, rgba(228, 233, 253, 1) 71%);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
+  min-height:100%;
+  padding:0;
+  margin:0;
+  position:relative;
 }
+body::after {
+  content: '';
+  display: block;
+  height: 100px;
+}
+
 
 .brand-logo{
   width: 200px;
@@ -80,6 +91,27 @@ a{
 /* New List Css */
 .new-list{
   width: 100%;
+}
+/* Footer */
+#footer-section {
+  background-color: #5d5d5d;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  color: black;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+}
+a i {
+  margin: 5%;
+  text-decoration: none;
+  color: black;
+}
+.social-icon {
+  margin: 20px 10px;
 }
 /*  */
 .home-list{
