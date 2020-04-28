@@ -18,11 +18,11 @@ A web app to keep all my book marks categorized and in one place. The main idea 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Installing
-'''
+```
  git clone https://github.com/pinnheads/Bookmark-Project.git
  cd into the directory
  npm install
  node app.js
-'''
+```
 ## Credits
-<div>Icons made by <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+Icons made by <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
