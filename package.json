@@ -18,7 +18,7 @@
   "homepage": "https://github.com/pinnheads/Bookmark-Project#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "ejs": "^3.1.3",
+    "ejs": "^3.1.7",
     "express": "^4.17.1",
     "got": "^11.8.5",
     "metascraper": "^5.12.6",
